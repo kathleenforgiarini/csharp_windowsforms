@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -20,6 +21,9 @@ namespace finalProject
         private const double eurRate = 0.6845;
         private const double gbpRate = 0.5997;
         private const double brlRate = 3.8265;
+
+        private DateTime startTime;
+        private DateTime endTime;
         public MoneyExchange()
         {
             InitializeComponent();
@@ -89,6 +93,15 @@ namespace finalProject
 
                 toTextbox.Text = result.ToString("0.00");
 
+                //Text File
+                string fileName = @"MoneyConv.txt";
+                using (FileStream fileStream = new FileStream(fileName, FileMode.Append))
+                using (StreamWriter writer = new StreamWriter(fileStream))
+                {
+                    string dateTimeString = DateTime.Now.ToString("yyyy/MM/dd h:mm:ss tt");
+                    writer.Write($"{amount} {from} = {Math.Round(result)} {to}, {dateTimeString}");
+                    writer.WriteLine();
+                }
             }
             else
             {
@@ -124,6 +137,46 @@ namespace finalProject
                     return brlRate;
                 default:
                     return 0.0;
+            }
+        }
+
+        private void read_Click(object sender, EventArgs e)
+        {
+            string fileName = "MoneyConv.txt";
+            string fileContent = "";
+
+            using (StreamReader reader = new StreamReader(fileName))
+            {
+                fileContent = reader.ReadToEnd();
+            }
+
+            string message = fileContent;
+            string title = "Money Exchange by Kathleen Forgiarini";
+            MessageBox.Show(message, title);
+
+        }
+
+        private void MoneyExchange_Load(object sender, EventArgs e)
+        {
+            startTime = DateTime.Now;
+        }
+
+        private void MoneyExchange_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            endTime = DateTime.Now;
+            TimeSpan interval = endTime - startTime;
+            int totalSeconds = Convert.ToInt32(interval.TotalSeconds);
+            int totalMinutes = totalSeconds / 60;
+            totalSeconds %= 60;
+            if (totalMinutes >= 2)
+            {
+                MessageBox.Show($"You used the money exchange form for {totalMinutes} minutes and {totalSeconds} seconds", "Time Spent");
+            } else if (totalMinutes == 0)
+            {
+                MessageBox.Show($"You used the money exchange form for {totalSeconds} seconds", "Time Spent");
+            } else
+            {
+                MessageBox.Show($"You used the money exchange form for {totalMinutes} minute and {totalSeconds} seconds", "Time Spent");
             }
         }
     }

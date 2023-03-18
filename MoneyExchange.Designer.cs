@@ -351,6 +351,7 @@
             this.read.TabIndex = 26;
             this.read.Text = "&Read File";
             this.read.UseVisualStyleBackColor = true;
+            this.read.Click += new System.EventHandler(this.read_Click);
             // 
             // exit
             // 
@@ -376,6 +377,8 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "MoneyExchange";
             this.Text = "MoneyExchange - Kathleen";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MoneyExchange_FormClosing);
+            this.Load += new System.EventHandler(this.MoneyExchange_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
