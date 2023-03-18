@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lotto649.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lotto649.Designer.cs">
+      <DependentUpon>Lotto649.cs</DependentUpon>
+    </Compile>
     <Compile Include="LottoMax.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +66,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Lotto649.resx">
+      <DependentUpon>Lotto649.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LottoMax.resx">
+      <DependentUpon>LottoMax.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>

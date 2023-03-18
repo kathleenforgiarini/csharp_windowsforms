@@ -4,29 +4,28 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace finalProject
 {
-    public partial class LottoMax : Form
+    public partial class Lotto649 : Form
     {
-        public LottoMax()
+        public Lotto649()
         {
             InitializeComponent();
         }
 
-        private void maxExit_Click(object sender, EventArgs e)
+        private void l649Exit_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Do you want to quit?", "Exit Lotto Max", MessageBoxButtons.YesNo).ToString() == "Yes")
+            if (MessageBox.Show("Do you want to quit?", "Exit Lotto649", MessageBoxButtons.YesNo).ToString() == "Yes")
             {
                 this.Close();
             }
         }
 
-        private void maxGenerate_Click(object sender, EventArgs e)
+        private void l649Generate_Click(object sender, EventArgs e)
         {
             Random labelRandom = new Random();
             int labelRandomNumber = 0;
@@ -41,23 +40,23 @@ namespace finalProject
                     labelNumbers += labelRandomNumber;
                 }
             }
-            maxLabel.Text = labelNumbers;
+            l649Label.Text = labelNumbers;
 
 
             Random boxRandom = new Random();
             int boxRandomNumber = 0;
             List<int> boxUniqueNumbers = new List<int>();
             string boxNumbers = "";
-            while (boxUniqueNumbers.Count < 8)
+            while (boxUniqueNumbers.Count < 7)
             {
-                boxRandomNumber = boxRandom.Next(1, 50);
+                boxRandomNumber = boxRandom.Next(1, 49);
                 if (!boxUniqueNumbers.Contains(boxRandomNumber))
                 {
                     boxUniqueNumbers.Add(boxRandomNumber);
                     boxNumbers += boxRandomNumber.ToString() + "\t\t";
                 }
             }
-            maxTextbox.Text = boxNumbers;
+            l649Textbox.Text = boxNumbers;
         }
     }
 }

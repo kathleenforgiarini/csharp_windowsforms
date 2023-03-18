@@ -24,5 +24,24 @@ namespace finalProject
                 Application.Exit();
             }
         }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lottoMax_Click(object sender, EventArgs e)
+        {
+            LottoMax obj = new LottoMax();
+            obj.ShowDialog();
+
+        }
+
+        private void lotto649_Click(object sender, EventArgs e)
+        {
+            Lotto649 obj = new Lotto649();
+            obj.ShowDialog();
+
+        }
     }
 }
