@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,6 +58,44 @@ namespace finalProject
                 }
             }
             l649Textbox.Text = boxNumbers;
+
+            //Text File
+            string fileName = @"LottoNbrs.txt";
+            using (FileStream fileStream = new FileStream(fileName, FileMode.Append))
+            using (StreamWriter writer = new StreamWriter(fileStream))
+            {
+                string lotteryName = "649";
+                string dateTimeString = DateTime.Now.ToString("yyyy/MM/dd h:mm:ss tt");
+                int bonusNumber = boxUniqueNumbers[6];
+                writer.Write(lotteryName + ", " + dateTimeString + ", ");
+                for (int i = 0; i < boxUniqueNumbers.Count - 1; i++)
+                {
+                    writer.Write(boxUniqueNumbers[i]);
+                    if (i != boxUniqueNumbers.Count - 1)
+                    {
+                        writer.Write(",");
+                    }
+                }
+                writer.Write(" Bonus " + bonusNumber);
+                writer.WriteLine();
+            }
+
+        }
+
+        private void l649Read_Click(object sender, EventArgs e)
+        {
+            string fileName = "LottoNbrs.txt";
+            string fileContent = "";
+
+            using (StreamReader reader = new StreamReader(fileName))
+            {
+                fileContent = reader.ReadToEnd();
+            }
+
+            string message = fileContent;
+            string title = "Lottery Numbers by Kathleen Forgiarini";
+            MessageBox.Show(message, title);
+
         }
     }
 }

@@ -89,6 +89,7 @@
             this.maxRead.TabIndex = 4;
             this.maxRead.Text = "&Read File";
             this.maxRead.UseVisualStyleBackColor = true;
+            this.maxRead.Click += new System.EventHandler(this.maxRead_Click);
             // 
             // maxExit
             // 

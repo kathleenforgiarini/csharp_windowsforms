@@ -65,6 +65,7 @@
             this.l649Read.TabIndex = 11;
             this.l649Read.Text = "&Read File";
             this.l649Read.UseVisualStyleBackColor = true;
+            this.l649Read.Click += new System.EventHandler(this.l649Read_Click);
             // 
             // l649Generate
             // 

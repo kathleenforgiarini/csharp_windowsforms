@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
@@ -58,6 +59,43 @@ namespace finalProject
                 }
             }
             maxTextbox.Text = boxNumbers;
+
+
+            //Text File
+            string fileName = @"LottoNbrs.txt";
+            using (FileStream fileStream = new FileStream(fileName, FileMode.Append))
+            using (StreamWriter writer = new StreamWriter(fileStream))
+            {
+                string lotteryName = "Max";
+                string dateTimeString = DateTime.Now.ToString("yyyy/MM/dd h:mm:ss tt");
+                int bonusNumber = boxUniqueNumbers[7];
+                writer.Write(lotteryName + ", " + dateTimeString + ", ");
+                for (int i = 0; i < boxUniqueNumbers.Count-1; i++)
+                {
+                    writer.Write(boxUniqueNumbers[i]);
+                    if (i != boxUniqueNumbers.Count - 1)
+                    {
+                        writer.Write(",");
+                    }
+                }
+                writer.Write(" Bonus " + bonusNumber);
+                writer.WriteLine();
+            }
+        }
+
+        private void maxRead_Click(object sender, EventArgs e)
+        {
+            string fileName = "LottoNbrs.txt";
+            string fileContent = "";
+            
+                using (StreamReader reader = new StreamReader(fileName))
+                {
+                    fileContent = reader.ReadToEnd();
+                }
+            
+            string message = fileContent;
+            string title = "Lottery Numbers by Kathleen Forgiarini";
+            MessageBox.Show(message, title);
         }
     }
 }
