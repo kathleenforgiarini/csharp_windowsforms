@@ -43,5 +43,12 @@ namespace finalProject
             obj.ShowDialog();
 
         }
+
+        private void money_Click(object sender, EventArgs e)
+        {
+            MoneyExchange obj = new MoneyExchange();
+            obj.ShowDialog();
+
+        }
     }
 }

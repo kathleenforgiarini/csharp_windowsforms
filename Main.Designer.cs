@@ -44,7 +44,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.money = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1.SuspendLayout();
@@ -175,7 +175,7 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Controls.Add(this.button4);
+            this.groupBox2.Controls.Add(this.money);
             this.groupBox2.Location = new System.Drawing.Point(54, 24);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(518, 284);
@@ -211,15 +211,16 @@
             this.button3.TabIndex = 1;
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // money
             // 
-            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button4.Location = new System.Drawing.Point(22, 21);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(207, 215);
-            this.button4.TabIndex = 0;
-            this.button4.UseVisualStyleBackColor = true;
+            this.money.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("money.BackgroundImage")));
+            this.money.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.money.Location = new System.Drawing.Point(22, 21);
+            this.money.Name = "money";
+            this.money.Size = new System.Drawing.Size(207, 215);
+            this.money.TabIndex = 0;
+            this.money.UseVisualStyleBackColor = true;
+            this.money.Click += new System.EventHandler(this.money_Click);
             // 
             // tabControl1
             // 
@@ -283,7 +284,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button money;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
     }
