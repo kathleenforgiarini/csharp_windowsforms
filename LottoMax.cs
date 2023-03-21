@@ -36,11 +36,8 @@ namespace finalProject
             while (labelUniqueNumbers.Count < 7)
             {
                 labelRandomNumber = labelRandom.Next(0, 10);
-                if (!labelUniqueNumbers.Contains(labelRandomNumber))
-                {
-                    labelUniqueNumbers.Add(labelRandomNumber);
-                    labelNumbers += labelRandomNumber;
-                }
+                labelUniqueNumbers.Add(labelRandomNumber);
+                labelNumbers += labelRandomNumber;
             }
             maxLabel.Text = labelNumbers;
 
