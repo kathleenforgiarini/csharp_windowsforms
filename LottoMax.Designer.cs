@@ -70,6 +70,7 @@
             this.maxTextbox.ReadOnly = true;
             this.maxTextbox.Size = new System.Drawing.Size(76, 251);
             this.maxTextbox.TabIndex = 0;
+            this.maxTextbox.TabStop = false;
             // 
             // maxGenerate
             // 

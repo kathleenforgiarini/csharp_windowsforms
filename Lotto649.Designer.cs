@@ -87,6 +87,7 @@
             this.l649Textbox.ReadOnly = true;
             this.l649Textbox.Size = new System.Drawing.Size(76, 251);
             this.l649Textbox.TabIndex = 7;
+            this.l649Textbox.TabStop = false;
             // 
             // l649
             // 

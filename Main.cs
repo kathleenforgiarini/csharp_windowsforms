@@ -48,7 +48,18 @@ namespace finalProject
         {
             MoneyExchange obj = new MoneyExchange();
             obj.ShowDialog();
+        }
 
+        private void temperature_Click(object sender, EventArgs e)
+        {
+            Temperature obj = new Temperature();
+            obj.ShowDialog();
+        }
+
+        private void calculator_Click(object sender, EventArgs e)
+        {
+            Calculator obj = new Calculator();
+            obj.ShowDialog();
         }
     }
 }

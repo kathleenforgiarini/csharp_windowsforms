@@ -38,12 +38,12 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.button6 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.button5 = new System.Windows.Forms.Button();
+            this.calculator = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.temperature = new System.Windows.Forms.Button();
             this.money = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -142,22 +142,23 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.White;
-            this.tabPage3.Controls.Add(this.button5);
+            this.tabPage3.Controls.Add(this.calculator);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(633, 334);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Simple Calculator";
             // 
-            // button5
+            // calculator
             // 
-            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button5.Location = new System.Drawing.Point(188, 29);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(234, 248);
-            this.button5.TabIndex = 3;
-            this.button5.UseVisualStyleBackColor = true;
+            this.calculator.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("calculator.BackgroundImage")));
+            this.calculator.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.calculator.Location = new System.Drawing.Point(188, 29);
+            this.calculator.Name = "calculator";
+            this.calculator.Size = new System.Drawing.Size(234, 248);
+            this.calculator.TabIndex = 3;
+            this.calculator.UseVisualStyleBackColor = true;
+            this.calculator.Click += new System.EventHandler(this.calculator_Click);
             // 
             // tabPage2
             // 
@@ -174,7 +175,7 @@
             // 
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.button3);
+            this.groupBox2.Controls.Add(this.temperature);
             this.groupBox2.Controls.Add(this.money);
             this.groupBox2.Location = new System.Drawing.Point(54, 24);
             this.groupBox2.Name = "groupBox2";
@@ -201,15 +202,16 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "Money Exchange";
             // 
-            // button3
+            // temperature
             // 
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.Location = new System.Drawing.Point(282, 21);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(207, 215);
-            this.button3.TabIndex = 1;
-            this.button3.UseVisualStyleBackColor = true;
+            this.temperature.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("temperature.BackgroundImage")));
+            this.temperature.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.temperature.Location = new System.Drawing.Point(282, 21);
+            this.temperature.Name = "temperature";
+            this.temperature.Size = new System.Drawing.Size(207, 215);
+            this.temperature.TabIndex = 1;
+            this.temperature.UseVisualStyleBackColor = true;
+            this.temperature.Click += new System.EventHandler(this.temperature_Click);
             // 
             // money
             // 
@@ -283,9 +285,9 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button temperature;
         private System.Windows.Forms.Button money;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button calculator;
         private System.Windows.Forms.Button button6;
     }
 }
