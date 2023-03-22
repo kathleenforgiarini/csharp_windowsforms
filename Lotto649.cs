@@ -26,6 +26,7 @@ namespace finalProject
             }
         }
 
+        string path = @".\files\LottoNbrs.txt";
         private void l649Generate_Click(object sender, EventArgs e)
         {
             Random labelRandom = new Random();
@@ -57,14 +58,20 @@ namespace finalProject
             }
             l649Textbox.Text = boxNumbers;
 
+
             //Text File
-            string fileName = @"LottoNbrs.txt";
-            using (FileStream fileStream = new FileStream(fileName, FileMode.Append))
-            using (StreamWriter writer = new StreamWriter(fileStream))
+            string dir = @".\files\";
+            if (!Directory.Exists(dir))
             {
+                Directory.CreateDirectory(dir);
+            }
+            try
+            {
+                FileStream fileStream = new FileStream(path, FileMode.Append);
+                StreamWriter writer = new StreamWriter(fileStream);
                 string lotteryName = "649";
-                string dateTimeString = DateTime.Now.ToString("yyyy/MM/dd h:mm:ss tt");
                 int bonusNumber = boxUniqueNumbers[6];
+                string dateTimeString = DateTime.Now.ToString("yyyy/MM/dd h:mm:ss tt");
                 writer.Write(lotteryName + ", " + dateTimeString + ", ");
                 for (int i = 0; i < boxUniqueNumbers.Count - 1; i++)
                 {
@@ -74,26 +81,37 @@ namespace finalProject
                         writer.Write(",");
                     }
                 }
-                writer.Write(" Bonus " + bonusNumber);
-                writer.WriteLine();
-            }
+                writer.WriteLine(" Bonus " + bonusNumber);
 
+                writer.Close();
+                fileStream.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured, try again. \n" + ex.Message);
+            }
         }
 
         private void l649Read_Click(object sender, EventArgs e)
         {
-            string fileName = "LottoNbrs.txt";
-            string fileContent = "";
-
-            using (StreamReader reader = new StreamReader(fileName))
+            string message = "";
+            try
             {
-                fileContent = reader.ReadToEnd();
+                StreamReader reader = new StreamReader(path);
+
+                while (reader.Peek() != -1)
+                {
+                    message += reader.ReadLine() + "\n";
+
+                }
+                string title = "Lottery Numbers by Kathleen Forgiarini";
+                MessageBox.Show(message, title);
+                reader.Close();
             }
-
-            string message = fileContent;
-            string title = "Lottery Numbers by Kathleen Forgiarini";
-            MessageBox.Show(message, title);
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured, try again. \n" + ex.Message);
+            }
         }
     }
 }

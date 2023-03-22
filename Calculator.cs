@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace finalProject
 {
@@ -82,14 +83,24 @@ namespace finalProject
                     break;
             }
 
-            string fileName = @"Calculator.txt";
-            using (FileStream fileStream = new FileStream(fileName, FileMode.Append))
-            using (StreamWriter writer = new StreamWriter(fileStream))
+            string path = @".\files\Calculator.txt";
+            string dir = @".\files\";
+            if (!Directory.Exists(dir))
             {
-                writer.Write($"{operand1} {op} {operand2} = {CurrentValue}");
-                writer.WriteLine();
+                Directory.CreateDirectory(dir);
             }
-
+            try
+            {
+                FileStream fileStream = new FileStream(path, FileMode.Append, FileAccess.Write);
+                StreamWriter writer = new StreamWriter(fileStream);
+                writer.WriteLine($"{operand1} {op} {operand2} = {CurrentValue}");
+                writer.Close();
+                fileStream.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured, try again. \n" + ex.Message);
+            }
             operand1 = currentValue;
         }
 

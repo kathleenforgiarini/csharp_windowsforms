@@ -37,6 +37,7 @@ namespace finalProject
             }
         }
 
+        string path = @".\files\MoneyConv.txt";
         private void convert_Click(object sender, EventArgs e)
         {
             double amount;
@@ -92,15 +93,28 @@ namespace finalProject
                 }
 
                 toTextbox.Text = result.ToString("0.00");
+                fromTextbox.Focus();
 
                 //Text File
-                string fileName = @"MoneyConv.txt";
-                using (FileStream fileStream = new FileStream(fileName, FileMode.Append))
-                using (StreamWriter writer = new StreamWriter(fileStream))
+                try
                 {
+
+
+                    string dir = @".\files\";
+                    if (!Directory.Exists(dir))
+                    {
+                        Directory.CreateDirectory(dir);
+                    }
+                    FileStream fileStream = new FileStream(path, FileMode.Append);
+                    StreamWriter writer = new StreamWriter(fileStream);
                     string dateTimeString = DateTime.Now.ToString("yyyy/MM/dd h:mm:ss tt");
-                    writer.Write($"{amount} {from} = {Math.Round(result)} {to}, {dateTimeString}");
-                    writer.WriteLine();
+                    writer.WriteLine($"{amount} {from} = {Math.Round(result)} {to}, {dateTimeString}");
+                    writer.Close();
+                    fileStream.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occured, try again. \n" + ex.Message);
                 }
             }
             else
@@ -142,18 +156,24 @@ namespace finalProject
 
         private void read_Click(object sender, EventArgs e)
         {
-            string fileName = "MoneyConv.txt";
-            string fileContent = "";
-
-            using (StreamReader reader = new StreamReader(fileName))
+            string message = "";
+            try
             {
-                fileContent = reader.ReadToEnd();
+                StreamReader reader = new StreamReader(path);
+
+                while (reader.Peek() != -1)
+                {
+                    message += reader.ReadLine() + "\n";
+
+                }
+                string title = "Money Exchange by Kathleen Forgiarini";
+                MessageBox.Show(message, title);
+                reader.Close();
             }
-
-            string message = fileContent;
-            string title = "Money Exchange by Kathleen Forgiarini";
-            MessageBox.Show(message, title);
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured, try again. \n" + ex.Message);
+            }
         }
 
         private void MoneyExchange_Load(object sender, EventArgs e)

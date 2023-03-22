@@ -23,7 +23,7 @@ namespace finalProject
 
         private void exit_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Do you want to quit the IP4 Validator??", "Exit", MessageBoxButtons.YesNo).ToString() == "Yes")
+            if (MessageBox.Show("Do you want to quit the IP4 Validator?", "Exit", MessageBoxButtons.YesNo).ToString() == "Yes")
             {
                 this.Close();
             }

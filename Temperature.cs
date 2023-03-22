@@ -26,7 +26,8 @@ namespace finalProject
             {
                 labelFrom.Text = "C";
                 labelTo.Text = "F";
-            } else
+            }
+            else
             {
                 labelFrom.Text = "F";
                 labelTo.Text = "C";
@@ -36,16 +37,21 @@ namespace finalProject
             message.Text = "";
         }
 
+        string path = @".\files\TempConv.txt";
         private void convert_Click(object sender, EventArgs e)
         {
             string valueStr = fromTextbox.Text.Trim();
             double result = 0;
             double inTemperature;
             string outMessage = "";
-            string fileName = @"TempConv.txt";
-            using (FileStream fileStream = new FileStream(fileName, FileMode.Append))
+            string dir = @".\files\";
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+            FileStream fileStream = new FileStream(path, FileMode.Append);
 
-                if (Regex.IsMatch(valueStr, @"^-?\d{1,3}(\.\d{1,2})?(°[CF])?$"))
+            if (Regex.IsMatch(valueStr, @"^-?\d{1,3}(\.\d{1,2})?(°[CF])?$"))
             {
                 try
                 {
@@ -103,15 +109,20 @@ namespace finalProject
                             break;
                     }
 
-                    using (StreamWriter writer = new StreamWriter(fileStream))
+                    try
                     {
+                        StreamWriter writer = new StreamWriter(fileStream);
                         string dateTimeString = DateTime.Now.ToString("yyyy/MM/dd h:mm:ss tt");
-                        writer.Write($"{inTemperature} Celsius = {Math.Round(result,1)} Fahrenheit, {dateTimeString} {Regex.Replace(outMessage, @"\s+", " ")}");
-                        writer.WriteLine();
+                        writer.WriteLine($"{inTemperature} Celsius = {Math.Round(result, 1)} Fahrenheit, {dateTimeString} {Regex.Replace(outMessage, @"\s+", " ")}");
+                        writer.Close();
+                        fileStream.Close();
                     }
-
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An error occured, try again. \n" + ex.Message);
                     }
-                    else
+                }
+                else
                 {
                     result = (inTemperature - 32) * 5 / 9;
                     switch (inTemperature)
@@ -156,16 +167,23 @@ namespace finalProject
                             outMessage = "";
                             break;
                     }
-                        using (StreamWriter writer = new StreamWriter(fileStream))
-                        {
-                            string dateTimeString = DateTime.Now.ToString("yyyy/MM/dd h:mm:ss tt");
-                            writer.Write($"{inTemperature} Fahrenheit = {Math.Round(result,1)} Celsius, {dateTimeString} {Regex.Replace(outMessage, @"\s+", " ")}");
-                            writer.WriteLine();
-                        }
+                    try
+                    {
+                        StreamWriter writer = new StreamWriter(fileStream);
+                        string dateTimeString = DateTime.Now.ToString("yyyy/MM/dd h:mm:ss tt");
+                        writer.WriteLine($"{inTemperature} Fahrenheit = {Math.Round(result, 1)} Celsius, {dateTimeString} {Regex.Replace(outMessage, @"\s+", " ")}");
+                        writer.Close();
+                        fileStream.Close();
                     }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An error occured, try again. \n" + ex.Message);
+                    }
+                }
 
                 toTextbox.Text = result.ToString("0.00");
                 message.Text = outMessage;
+                fromTextbox.Focus();
             }
             else
             {
@@ -184,17 +202,24 @@ namespace finalProject
 
         private void read_Click(object sender, EventArgs e)
         {
-            string fileName = "TempConv.txt";
-            string fileContent = "";
-
-            using (StreamReader reader = new StreamReader(fileName))
+            string message = "";
+            try
             {
-                fileContent = reader.ReadToEnd();
-            }
+                StreamReader reader = new StreamReader(path);
 
-            string message = fileContent;
-            string title = "Temperature Converter by Kathleen Forgiarini";
-            MessageBox.Show(message, title);
+                while (reader.Peek() != -1)
+                {
+                    message += reader.ReadLine() + "\n";
+
+                }
+                string title = "Temperature Converter by Kathleen Forgiarini";
+                MessageBox.Show(message, title);
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured, try again. \n" + ex.Message);
+            }
         }
     }
 }
