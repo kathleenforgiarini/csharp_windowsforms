@@ -61,5 +61,11 @@ namespace finalProject
             Calculator obj = new Calculator();
             obj.ShowDialog();
         }
+
+        private void ipValidator_Click(object sender, EventArgs e)
+        {
+            IPValidator obj = new IPValidator();
+            obj.ShowDialog();
+        }
     }
 }

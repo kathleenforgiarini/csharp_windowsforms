@@ -36,7 +36,7 @@
             this.lotto649 = new System.Windows.Forms.Button();
             this.lottoMax = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.button6 = new System.Windows.Forms.Button();
+            this.ipValidator = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.calculator = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -122,22 +122,23 @@
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.White;
-            this.tabPage4.Controls.Add(this.button6);
+            this.tabPage4.Controls.Add(this.ipValidator);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(633, 334);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "IP v4 validator";
             // 
-            // button6
+            // ipValidator
             // 
-            this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button6.Location = new System.Drawing.Point(196, 37);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(234, 248);
-            this.button6.TabIndex = 4;
-            this.button6.UseVisualStyleBackColor = true;
+            this.ipValidator.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ipValidator.BackgroundImage")));
+            this.ipValidator.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ipValidator.Location = new System.Drawing.Point(196, 37);
+            this.ipValidator.Name = "ipValidator";
+            this.ipValidator.Size = new System.Drawing.Size(234, 248);
+            this.ipValidator.TabIndex = 4;
+            this.ipValidator.UseVisualStyleBackColor = true;
+            this.ipValidator.Click += new System.EventHandler(this.ipValidator_Click);
             // 
             // tabPage3
             // 
@@ -288,7 +289,7 @@
         private System.Windows.Forms.Button temperature;
         private System.Windows.Forms.Button money;
         private System.Windows.Forms.Button calculator;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button ipValidator;
     }
 }
 

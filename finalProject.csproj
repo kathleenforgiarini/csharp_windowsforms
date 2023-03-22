@@ -52,6 +52,12 @@
     <Compile Include="Calculator.Designer.cs">
       <DependentUpon>Calculator.cs</DependentUpon>
     </Compile>
+    <Compile Include="IPValidator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IPValidator.Designer.cs">
+      <DependentUpon>IPValidator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Lotto649.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,9 @@
     </Compile>
     <EmbeddedResource Include="Calculator.resx">
       <DependentUpon>Calculator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IPValidator.resx">
+      <DependentUpon>IPValidator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Lotto649.resx">
       <DependentUpon>Lotto649.cs</DependentUpon>
