@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Xml.Linq;
+using System.IO.Pipes;
 
 namespace finalProject
 {
@@ -36,6 +40,7 @@ namespace finalProject
             startTime = DateTime.Now;
         }
 
+        string pathBinary = @"C:.\files\BIPValidator.dat";
         private void validate_Click(object sender, EventArgs e)
         {
             string ip = textBox.Text.Trim();
@@ -51,6 +56,29 @@ namespace finalProject
                     if (ipRegex.IsMatch(ip))
                     {
                         MessageBox.Show(ip + "\nThe IP is correct", "Valid IP");
+                        FileStream fileStream = null;
+                        try
+                        {
+                            string dir = @".\files\";
+                            if (!Directory.Exists(dir))
+                            {
+                                Directory.CreateDirectory(dir);
+                            }
+                            fileStream = new FileStream(pathBinary, FileMode.Append, FileAccess.Write);
+                            BinaryWriter binaryOut = new BinaryWriter(fileStream);
+                            binaryOut.Write(textBox.Text.Trim());
+                            binaryOut.Write(DateTime.Now.ToString("yyyy/MM/dd h:mm:ss tt"));
+                            binaryOut.Close();
+                            fileStream.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("An error occurred while writing to the file. Try again!\n" + ex.Message, "Error");
+                        }
+                        finally
+                        {
+                            if (fileStream != null) fileStream.Close();
+                        }
                     }
                     else
                     {

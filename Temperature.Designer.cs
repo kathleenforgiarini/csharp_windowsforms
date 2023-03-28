@@ -36,10 +36,10 @@
             this.toTextbox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.message = new System.Windows.Forms.TextBox();
             this.convert = new System.Windows.Forms.Button();
             this.read = new System.Windows.Forms.Button();
             this.exit = new System.Windows.Forms.Button();
+            this.message = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cTof
@@ -118,14 +118,6 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Message:";
             // 
-            // message
-            // 
-            this.message.Location = new System.Drawing.Point(12, 213);
-            this.message.Multiline = true;
-            this.message.Name = "message";
-            this.message.Size = new System.Drawing.Size(373, 50);
-            this.message.TabIndex = 8;
-            // 
             // convert
             // 
             this.convert.Location = new System.Drawing.Point(13, 282);
@@ -156,15 +148,23 @@
             this.exit.UseVisualStyleBackColor = true;
             this.exit.Click += new System.EventHandler(this.exit_Click);
             // 
+            // message
+            // 
+            this.message.AutoSize = true;
+            this.message.Location = new System.Drawing.Point(12, 226);
+            this.message.Name = "message";
+            this.message.Size = new System.Drawing.Size(0, 16);
+            this.message.TabIndex = 12;
+            // 
             // Temperature
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(408, 324);
+            this.Controls.Add(this.message);
             this.Controls.Add(this.exit);
             this.Controls.Add(this.read);
             this.Controls.Add(this.convert);
-            this.Controls.Add(this.message);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.labelTo);
@@ -190,9 +190,9 @@
         private System.Windows.Forms.TextBox toTextbox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox message;
         private System.Windows.Forms.Button convert;
         private System.Windows.Forms.Button read;
         private System.Windows.Forms.Button exit;
+        private System.Windows.Forms.Label message;
     }
 }

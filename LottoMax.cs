@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.IO.Pipes;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
@@ -60,13 +61,14 @@ namespace finalProject
 
             //Text File
             string dir = @".\files\";
-            if (!Directory.Exists(dir))
-            {
-                Directory.CreateDirectory(dir);
-            }
+            FileStream fileStream = null;
             try
             {
-                FileStream fileStream = new FileStream(path, FileMode.Append);
+                if (!Directory.Exists(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
+                fileStream = new FileStream(path, FileMode.Append, FileAccess.Write);
                 StreamWriter writer = new StreamWriter(fileStream);
                 string lotteryName = "Max";
                 string dateTimeString = DateTime.Now.ToString("yyyy/MM/dd h:mm:ss tt");
@@ -89,27 +91,50 @@ namespace finalProject
             {
                 MessageBox.Show("An error occured, try again. \n" + ex.Message);
             }
+            finally
+            {
+                if (fileStream != null) fileStream.Close();
+            }
         }
 
         private void maxRead_Click(object sender, EventArgs e)
         {
-            string message = "";
+            FileStream fileStream = null;
+            StreamReader reader = null;
+            string textToPrint = "";
+            int counter = 0;
+            string title = "Lottery Numbers by Kathleen Forgiarini";
             try
             {
-                StreamReader reader = new StreamReader(path);
+                fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
+                reader = new StreamReader(fileStream);
 
                 while (reader.Peek() != -1)
                 {
-                    message += reader.ReadLine() + "\n";
+                    textToPrint += reader.ReadLine() + "\n";
+                    counter++;
 
+                    if (counter == 10)
+                    {
+                        MessageBox.Show(textToPrint, title);
+                        textToPrint = "";
+                        counter = 0;
+                    }
                 }
-                string title = "Lottery Numbers by Kathleen Forgiarini";
-                MessageBox.Show(message, title);
+
+                if (counter != 0)
+                {
+                    MessageBox.Show(textToPrint, title);
+                }
                 reader.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An error occured, try again. \n" + ex.Message);
+            }
+            finally
+            {
+                if (fileStream != null) fileStream.Close();
             }
         }
     }

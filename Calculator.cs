@@ -85,13 +85,14 @@ namespace finalProject
 
             string path = @".\files\Calculator.txt";
             string dir = @".\files\";
-            if (!Directory.Exists(dir))
-            {
-                Directory.CreateDirectory(dir);
-            }
+            FileStream fileStream = null;
             try
             {
-                FileStream fileStream = new FileStream(path, FileMode.Append, FileAccess.Write);
+                if (!Directory.Exists(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
+                fileStream = new FileStream(path, FileMode.Append, FileAccess.Write);
                 StreamWriter writer = new StreamWriter(fileStream);
                 writer.WriteLine($"{operand1} {op} {operand2} = {CurrentValue}");
                 writer.Close();
@@ -100,6 +101,10 @@ namespace finalProject
             catch (Exception ex)
             {
                 MessageBox.Show("An error occured, try again. \n" + ex.Message);
+            }
+            finally
+            {
+                if (fileStream != null) fileStream.Close();
             }
             operand1 = currentValue;
         }

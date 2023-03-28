@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.IO.Pipes;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -96,16 +97,15 @@ namespace finalProject
                 fromTextbox.Focus();
 
                 //Text File
+                FileStream fileStream = null;
                 try
                 {
-
-
                     string dir = @".\files\";
                     if (!Directory.Exists(dir))
                     {
                         Directory.CreateDirectory(dir);
                     }
-                    FileStream fileStream = new FileStream(path, FileMode.Append);
+                    fileStream = new FileStream(path, FileMode.Append, FileAccess.Write);
                     StreamWriter writer = new StreamWriter(fileStream);
                     string dateTimeString = DateTime.Now.ToString("yyyy/MM/dd h:mm:ss tt");
                     writer.WriteLine($"{amount} {from} = {Math.Round(result)} {to}, {dateTimeString}");
@@ -115,6 +115,10 @@ namespace finalProject
                 catch (Exception ex)
                 {
                     MessageBox.Show("An error occured, try again. \n" + ex.Message);
+                }
+                finally
+                {
+                    if (fileStream != null) fileStream.Close();
                 }
             }
             else
@@ -157,22 +161,42 @@ namespace finalProject
         private void read_Click(object sender, EventArgs e)
         {
             string message = "";
+            FileStream fileStream = null;
+            StreamReader reader = null;
+            string textToPrint = "";
+            int counter = 0;
+            string title = "Money Exchange by Kathleen Forgiarini";
             try
             {
-                StreamReader reader = new StreamReader(path);
+                fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
+                reader = new StreamReader(fileStream);
 
                 while (reader.Peek() != -1)
                 {
-                    message += reader.ReadLine() + "\n";
+                    textToPrint += reader.ReadLine() + "\n";
+                    counter++;
 
+                    if (counter == 10)
+                    {
+                        MessageBox.Show(textToPrint, title);
+                        textToPrint = "";
+                        counter = 0;
+                    }
                 }
-                string title = "Money Exchange by Kathleen Forgiarini";
-                MessageBox.Show(message, title);
+
+                if (counter != 0)
+                {
+                    MessageBox.Show(textToPrint, title);
+                }
                 reader.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An error occured, try again. \n" + ex.Message);
+            }
+            finally
+            {
+                if (fileStream != null) fileStream.Close();
             }
         }
 
