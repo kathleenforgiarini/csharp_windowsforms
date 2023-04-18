@@ -40,7 +40,7 @@ namespace finalProject
             startTime = DateTime.Now;
         }
 
-        string pathBinary = @"C:.\files\BIPValidator.dat";
+        string pathBinary = @".\files\BIPValidator.dat";
         private void validate_Click(object sender, EventArgs e)
         {
             string ip = textBox.Text.Trim();

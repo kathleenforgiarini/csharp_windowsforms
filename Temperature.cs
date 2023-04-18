@@ -98,7 +98,7 @@ namespace finalProject
                             break;
                         case -40:
                             message.ForeColor = Color.Blue;
-                            outMessage = "Extremely Cold Day \t\t\t\t\t(and the same number!)";
+                            outMessage = "Extremely Cold Day \n(and the same number!)";
                             break;
                         default:
                             outMessage = "";
@@ -168,7 +168,7 @@ namespace finalProject
                             break;
                         case -40:
                             message.ForeColor = Color.Blue;
-                            outMessage = "Extremely Cold Day \t\t\t\t\t(and the same number!)";
+                            outMessage = "Extremely Cold Day \n(and the same number!)";
                             break;
                         default:
                             outMessage = "";

@@ -151,7 +151,7 @@
             // message
             // 
             this.message.AutoSize = true;
-            this.message.Location = new System.Drawing.Point(12, 226);
+            this.message.Location = new System.Drawing.Point(12, 219);
             this.message.Name = "message";
             this.message.Size = new System.Drawing.Size(0, 16);
             this.message.TabIndex = 12;
